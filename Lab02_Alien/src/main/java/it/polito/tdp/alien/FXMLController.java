@@ -88,6 +88,17 @@ public class FXMLController {
 			}
 
 			String translation = alienDictionary.translateWord(alienWord);
+			
+			if (alienWord.matches("[a-zA-Z?]*") && !alienWord.matches("[a-zA-Z]*")) {
+
+				// Traduzione con WildCard
+				translation = alienDictionary.translateWorldWildCard(alienWord);
+
+			} else {
+
+				// Traduzione classica
+				translation = alienDictionary.translateWord(alienWord);
+			}
 
 			if (translation != null) {
 				txtResult.setText(translation);

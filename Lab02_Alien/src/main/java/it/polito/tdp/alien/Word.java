@@ -1,19 +1,38 @@
 package it.polito.tdp.alien;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Word {
 	
 	private String alienWord;
-	private String translation;
+	private List<String> translations;
 	
 	public Word(String alienWord, String translation) {
 		super();
 		this.alienWord = alienWord;
-		this.translation = translation;
+		this.translations = new ArrayList<String>();
+		this.translations.add(translation);
+		
 	}
 	
 	public Word(String alienWord) {
 		super();
 		this.alienWord = alienWord;
+	}
+	
+	public boolean compareWild(String alienWild) {
+		if(alienWord.matches(alienWild))
+			return true;
+		return false;
+	}
+	
+	public String getTranslation() {
+		String s = "";
+		for(String ss : this.translations) {
+			s += ss + "\n";
+		}
+		return s;
 	}
 
 
@@ -25,13 +44,12 @@ public class Word {
 		this.alienWord = alienWord;
 	}
 
-	public String getTranslation() {
-		return translation;
-	}
+	
 
 	public void setTranslation(String translation) {
-		this.translation = translation;
-	}
+		if(!this.translations.contains(translation))
+		this.translations.add(translation);
+		}
 
 	@Override
 	public int hashCode() {

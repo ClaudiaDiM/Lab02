@@ -32,6 +32,26 @@ public class AlienDictionary {
 		}
 		return null;
 	}
+	
+	public String translateWorldWildCard(String alienWildCard) {
+		alienWildCard = alienWildCard.replace("\\?",".");
+		
+		int matchCounter = 0;
+		StringBuilder sb = new StringBuilder();
+		
+		for(Word w : dictionary) {
+			if(w.compareWild(alienWildCard)) {
+				matchCounter ++;
+				sb.append(w.getTranslation()+"\n");
+			}
+		}
+		
+		if(matchCounter!=0) {
+			return sb.toString();
+		}
+		else 
+			return null;
+	}
 
 	
 	
